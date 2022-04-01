@@ -17,7 +17,7 @@ public class SingleWord {
         System.out.println(arr);
     }
     public static void main(String[] args) {
-        String M = "DONTTROUBLETROUB";
+        String M = "TIMEISMONEYTIMEI";
         String K = "KGOXPMUHCAYTJQWZRIVESFLDNB";
         Encode(M, K);
     }

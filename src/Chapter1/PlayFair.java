@@ -100,8 +100,8 @@ public class PlayFair {
     }
 
     public static void main(String[] args) {
-        String M = "HELLOONEANDALL";
-        String K = "THEDIEIS";
+        String M = "BEAUTYISONLYSK";
+        String K = "BEAUTY";
         String AlphaBet = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
         AddMatrix(K, AlphaBet);
         System.out.println(matrix);

@@ -46,8 +46,8 @@ public class Vigenere {
         return res;
     }
     public static void main(String[] args) {
-        String M = "ALLWORKANDNOPLAYMA";
-        String K = "WHENINRO";
+            String M = "MONEYMAKESTHE";
+        String K = "YOUREON";
         AdjMarix();
         System.out.println("Normal Key: " + Encode(M, NormalKey(M, K)));
         System.out.println("Auto Key: " + Encode(M, AutoKey(M, K)));
