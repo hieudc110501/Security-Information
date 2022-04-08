@@ -1,4 +1,4 @@
-package Chapter3;
+package Chapter4;
 
 import Chapter2.HaBac;
 import Chapter2.NghichDaoEuclidMoRong;
@@ -21,14 +21,16 @@ public class RSA {
         System.out.println("PR = " + "{" + d + "," + n + "}");
 
         HaBac res1 = new HaBac();
+        //C = M^e mod n
         int C = res1.HaBac(M, e, n);
         System.out.println("C = " + M + "^" + e + " mod " + n + " = " + C);
+        //M = C^d mod n
         M = res1.HaBac(C, d, n);
         System.out.println("M = " + C + "^" + d + " mod " + n + " = " + C);
     }
     public static void main(String[] args) {
-        int p = 17, q = 11, e = 7;
-        int M = 88;
+        int p = 31, q = 47, e = 43;
+        int M = 53;
         SinhKhoa(p, q, e, M);
     }
 }

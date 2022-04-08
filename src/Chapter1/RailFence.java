@@ -1,3 +1,5 @@
+package Chapter1;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,8 @@ public class RailFence {
     static int row = K;
     static boolean check = false;
     static String[][] matrix = new String[K][K];
+
+    //Thêm M vào ma trận 6 hàng
     public static void addMatrix() {
         int count = 0;
         for (int i = 0; i < K; i ++) {
@@ -26,12 +30,16 @@ public class RailFence {
             }
         }
     }
+
+    //mã hóa
     public static void Encode(String[][] matrix) {
         String arr = "";
         for (int i = 0; i < K; i ++) {
             for (int j = 0; j < row; j ++) {
                 arr += matrix[j][i];
+                System.out.print(matrix[i][j] + " ");
             }
+            System.out.println();
         }
         System.out.println(arr);
     }

@@ -2,7 +2,7 @@ package Chapter3;
 
 import java.util.*;
 
-public class test5 {
+public class AES {
     static String[][] Sbox = {
             {"63", "7C", "77", "7B", "F2", "6B", "6F", "C5", "30", "01", "67", "2B", "FE", "D7", "AB", "76"},
             {"CA", "82", "C9", "7D", "FA", "59", "47", "F0", "AD", "D4", "A2", "AF", "9C", "A4", "72", "C0"},
@@ -44,17 +44,6 @@ public class test5 {
         for (int i = 0; i < 4; i ++) {
             for (int j = 0; j < 4; j ++) {
                 matrix[j][i] = a.substring(k, k+2);
-                k += 2;
-            }
-        }
-        return matrix;
-    }
-    public static String[][] addMatrixTest(String a) {
-        String[][] matrix = new String[4][4];
-        int k = 0;
-        for (int i = 0; i < 4; i ++) {
-            for (int j = 0; j < 4; j ++) {
-                matrix[i][j] = a.substring(k, k+2);
                 k += 2;
             }
         }
@@ -117,28 +106,15 @@ public class test5 {
         String w1 = a.substring(8, 16);
         String w2 = a.substring(16, 24);
         String w3 = a.substring(24, 32);
-        System.out.println(w0);
-        System.out.println(w1);
-        System.out.println(w2);
-        System.out.println(w3);
         int count = 0;
         while(count < 10) {
             String gx = RotWord(w3); //dịch trái
-            //System.out.println("Dich trai: " + gx);
             gx = SUBBYTE(gx); //subbyte bằng ma trận Sbox
-            //System.out.println("Subbyte: " + gx);
             gx = XOR(gx.substring(0,2),Rcon[count]) + gx.substring(2,w3.length()); // cộng với Rcon
-            //System.out.println("Cong Rcon: " + gx);
-            //System.out.println();
             String w4 = XOR(gx, w0);
             String w5 = XOR(w4, w1);
             String w6 = XOR(w5, w2);
             String w7 = XOR(w6, w3);
-            /*System.out.println("w4: " + w4);
-            System.out.println("w5: " + w5);
-            System.out.println("w6: " + w6);
-            System.out.println("w7: " + w7);*/
-            System.out.println("key: " + w4 + w5 + w6 + w7);
             Key.add(w4 + w5 + w6 + w7); //thêm key
             w3 = w7; w0 = w4; w1 = w5; w2 = w6;
             count ++;
@@ -268,82 +244,15 @@ public class test5 {
         SinhKhoa(K);
         //System.out.println("10 khóa được sinh : " + Key);
 
-        for (int k = 0; k < 4; k ++) {
-            for (int j = 0; j < 4; j ++) {
-                System.out.print(matrixM[k][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-        for (int k = 0; k < 4; k ++) {
-            for (int j = 0; j < 4; j ++) {
-                System.out.print(matrixK[k][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
         //lần đầu cộng M với K
         ADDROUNDKEY(matrixK);
-        for (int k = 0; k < 4; k ++) {
-            for (int j = 0; j < 4; j ++) {
-                System.out.print(matrixM[k][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-        /*SUBBYTEMatrix(matrixM);
-        for (int k = 0; k < 4; k ++) {
-            for (int j = 0; j < 4; j ++) {
-                System.out.print(matrixM[k][j] + " ");
-            }
-            System.out.println();
-        }*/
 
         //chạy 9 lần
         for (int i = 0; i < 9; i ++) {
             SUBBYTEMatrix(matrixM);
-            //System.out.print(" ");
-            for (int k = 0; k < 4; k ++) {
-                for (int j = 0; j < 4; j ++) {
-                    System.out.print(matrixM[k][j] + " ");
-                }
-                System.out.println();
-            }
-            System.out.println();
             SHIFTROW(matrixM);
-            System.out.print("Shiftrow: ");
-            //System.out.print(" ");
-            for (int k = 0; k < 4; k ++) {
-                for (int j = 0; j < 4; j ++) {
-                    System.out.print(matrixM[k][j] + "");
-                }
-            }
-            System.out.println();
             MIXCOLUMN(matrixM);
-            System.out.print("Mixcolumn: ");
-            //System.out.print(" ");
-            for (int k = 0; k < 4; k ++) {
-                for (int j = 0; j < 4; j ++) {
-                    System.out.print(matrixM[k][j] + "");
-                }
-            }
-            System.out.println();
             ADDROUNDKEY(addMatrix(Key.get(i)));
-            String v[][] = addMatrix(Key.get(i));
-            for (int x = 0; x < 4; x ++) {
-                for (int j = 0; j < 4; j ++) {
-                    System.out.print(v[x][j] + "");
-                }
-            }
-            System.out.println();
-            System.out.print("ADD: ");
-            for (int k = 0; k < 4; k ++) {
-                for (int j = 0; j < 4; j ++) {
-                    System.out.print(matrixM[k][j   ] + "");
-                }
-            }
-            System.out.println();
-            System.out.println();
         }
 
         //chạy lần cuối không có MIXCOLUMN

@@ -1,3 +1,5 @@
+package Chapter1;
+
 import java.util.*;
 
 public class SingleWord {
@@ -8,7 +10,6 @@ public class SingleWord {
             String key = String.valueOf(AlphaBet.charAt(i));
             String value = String.valueOf(K.charAt(i));
             map.put(key, value);
-
         }
         String arr = "";
         for (int i = 0; i < M.length(); i ++) {
@@ -17,8 +18,8 @@ public class SingleWord {
         System.out.println(arr);
     }
     public static void main(String[] args) {
-        String M = "TIMEISMONEYTIMEI";
-        String K = "KGOXPMUHCAYTJQWZRIVESFLDNB";
+        String M = "MONEYMAKESTHEMAR";
+        String K = "JEHFAVZNOXUBMYPKDLGSRCTWQI";
         Encode(M, K);
     }
 }

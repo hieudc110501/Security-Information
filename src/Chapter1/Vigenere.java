@@ -1,26 +1,19 @@
+package Chapter1;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Vigenere {
-
-    static int[][] matrix = new int[26][26];
-
-    //create AdjMatrix
-    public static void AdjMarix() {
-        for (int i = 0; i < 26; i ++) {
-            for (int j = 0; j < 26; j ++) {
-                matrix[i][j] = (i + j) % 26 + 65;
-            }
-        }
-    }
-
-    //normal key
+    //Lặp khóa
     public static String NormalKey(String M, String K) {
         int x = M.length() / K.length();
+        //kiểm tra len(M) gấp len(K)
         while (x > 0) {
+            //gấp 1 lần chỉ cộng thêm phần thiếu
             if (x == 1) {
                 K += K.substring(0, M.length() - K.length());
             }
+            //gấp nhiều lần thì cộng cả K
             else {
                 K += K;
             }
@@ -37,19 +30,20 @@ public class Vigenere {
         return res.toString();
     }
 
-    //check matrix and encode
-    public static String Encode(String M, String K) {
+    //mã hóa
+    public static String Encode1(String M, String K) {
         String res = "";
         for (int i = 0; i < K.length(); i ++) {
-            res += (char)matrix[(int)(M.charAt(i) - 65)][(int)(K.charAt(i) - 65)];
+            res += (char) (((int)M.charAt(i) + (int)K.charAt(i)) % 26 + 65);
         }
         return res;
     }
+
     public static void main(String[] args) {
-            String M = "MONEYMAKESTHE";
-        String K = "YOUREON";
-        AdjMarix();
-        System.out.println("Normal Key: " + Encode(M, NormalKey(M, K)));
-        System.out.println("Auto Key: " + Encode(M, AutoKey(M, K)));
+        String M = "THETRUTHWILLO";
+        String K = "THEGRASS";
+        System.out.println("Input: M = " + M + " , " + "K = " + K);
+        System.out.println("Lap Key: " + Encode1(M, NormalKey(M, K)));
+        System.out.println("Auto Key: " + Encode1(M, AutoKey(M, K)));
     }
 }
